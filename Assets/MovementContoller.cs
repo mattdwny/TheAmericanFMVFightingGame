@@ -88,16 +88,24 @@ public class MovementController : MonoBehaviour
 			grounded = true;
 		}
 	}
-	void Punch(LinkedList<inputHolder> inputs){
+	void Punch(int curstate,LinkedList<inputHolder> inputs, int dir,int super){
+		LinkedListNode<inputHolder> Inputs = control.inputStack.Last;
+		switch(Inputs.value.input){
+			
+		}
+	
 	}
 	
-	void AirPunch(LinkedList<inputHolder> inputs){
+	void AirPunch(int curstate,LinkedList<inputHolder> inputs, int dir, int super){
+		
 	}
 	
-	void Kick(LinkedList<inputHolder> inputs){
+	void Kick(int curstate,LinkedList<inputHolder> inputs, int dir){
+		
 	}
 	
-	void AirKick(LinkedList<inputHolder> inputs){
+	void AirKick(int curstate,LinkedList<inputHolder> inputs, int dir){
+		
 	}
 }
 

@@ -28,22 +28,22 @@ public class Fighter : MonoBehaviour
 					this.state = FighterState.JUMP;
 					redo = true;
 				}
-				else if (control.pButtonSt==1 && !player.isTouchingGround())
+				else if (control.pButtonSt!=0 && !player.isTouchingGround())
 				{
 					this.state = FighterState.PUNCH;
 					redo = true;
 				}
-				else if (control.kButtonSt == 1 && !player.isTouchingGround()) 
+				else if (control.kButtonSt !=0&& !player.isTouchingGround()) 
 				{
 					this.state = FighterState.KICK;
 					redo = true;
 				}
-				else if (control.pButtonSt==1 && player.isTouchingGround())
+				else if (control.pButtonSt!=0 && player.isTouchingGround())
 				{
 					this.state = FighterState.AIRPUNCH;
 					redo = true;
 				}
-				else if (control.kButtonSt==1&& !player.isTouchingGround()) 
+				else if (control.kButtonSt!=0&& !player.isTouchingGround()) 
 				{
 					this.state = FighterState.AIRKICK;
 					redo = true;
@@ -79,12 +79,12 @@ public class Fighter : MonoBehaviour
 				break;
 			case FighterState.PUNCH:
 				
-				player.Punch(control.inputStack);
+				player.Punch(control.pButtonSt,control.inputStack,player.facing,control.kButtonSt);
 				this.state = FighterState.NULL;
 				break;
 			case FighterState.KICK:
 				
-				player.Kick(control.inputStack);
+				player.Kick(control.kButtonSt,control.inputStack,player.facing);
 				this.state = FighterState.NULL;
 				break;
 			case FighterState.JUMP:
@@ -93,12 +93,12 @@ public class Fighter : MonoBehaviour
 				break;
 			case FighterState.AIRPUNCH:
 				
-				player.AirPunch(control.inputStack);
+				player.AirPunch(control.pButtonSt,control.inputStack,player.facing,control.kButtonSt);
 				this.state = FighterState.NULL;
 				break;
 			case FighterState.AIRKICK:
 				
-				player.AirKick(control.inputStack);
+				player.AirKick(control.kButtonSt,control.inputStack,player.facing);
 				this.state = FighterState.NULL;
 				break;
 			case FighterState.BLOCK:
