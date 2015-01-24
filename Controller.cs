@@ -14,7 +14,7 @@ public class Controller {
 	void UpdateInput () {
 		LinkedListNode<inputHolder> CheckedInput = inputStack.first;
 		while(CheckedInput != null){
-			if(Time.time-CheckInput.time< decayTime){
+			if(Time.time-CheckInput.Value.time> decayTime){
 				inputHolder Temp = CheckedInput;
 				CheckedInput = CheckedInput.next;
 				inputStack.remove(Temp);
