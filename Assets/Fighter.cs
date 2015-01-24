@@ -10,7 +10,7 @@ public class Fighter : MonoBehaviour
 	public FighterState state = FighterState.NULL;
 	public State[] states;
 	public Controller control;
-
+	public MovementController player;
 	void Update () 
 	{
 		bool redo = false;
@@ -21,32 +21,36 @@ public class Fighter : MonoBehaviour
 			case FighterState.NULL:
 				LinkedListNode<inputHolder> LastMoveInput = control.inputStack.Last;
 			
-				if (LastMoveInput.Value.input == 1 || LastMoveInput.Value.time + x < Time.time)
+				if (LastMoveInput.Value.input == 1 && LastMoveInput.Value.time + x < Time.time)
 				{
 					this.state = FighterState.JUMP;
 					redo = true;
 				}
-				else if (control.pButtonSt==1) 
+				else if (control.pButtonSt==1 && !player.isTouchingGround())
 				{
 					this.state = FighterState.PUNCH;
 					redo = true;
 				}
-				else if (control.kButtonSt==1) 
+				else if (control.kButtonSt==1&& !player.isTouchingGround()) 
 				{
 					this.state = FighterState.KICK;
 					redo = true;
 				}
-				else if (Buttons.airPunch + x < Time.time) 
+				else if (control.pButtonSt==1 && player.isTouchingGround())
 				{
 					this.state = FighterState.AIRPUNCH;
 					redo = true;
 				}
-				else if (Buttons.airKick + x < Time.time) 
+				else if (control.kButtonSt==1&& !player.isTouchingGround()) 
 				{
 					this.state = FighterState.AIRKICK;
 					redo = true;
 				}
-				else if (Buttons.block + x < Time.time) 
+				else if (player.facing = 1 && LastMoveInput.Value.input == 0 && LastMoveInput.Value.time + x < Time.time) 
+				{
+					this.state = FighterState.BLOCK;
+					redo = true;
+				}else if (player.facing = 0 && LastMoveInput.Value.input == 2 && LastMoveInput.Value.time + x < Time.time) 
 				{
 					this.state = FighterState.BLOCK;
 					redo = true;
