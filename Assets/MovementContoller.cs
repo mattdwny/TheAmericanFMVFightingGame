@@ -11,9 +11,11 @@ public class MovementController : MonoBehaviour
 	public float jumpSpeed = 20f;
 	private bool grounded = false;
 	private const int MAX_JUMPS = 2;
+	public int hitstun_count;
+
 	private int jumpsRemaining;
-	private float velX;
-	private float velY;
+	public float velX;
+	public float velY;
 	private float grav = 40f;
 	private int gravCounter;
 	private int jumpCounter;
@@ -32,6 +34,7 @@ public class MovementController : MonoBehaviour
 		jumping = false;
 		current_x = transform.position.x;
 		current_y = transform.position.y;
+		hitstun_count = 0;
 	}
 	
 	// Update is called once per frame
