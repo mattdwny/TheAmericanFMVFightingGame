@@ -32,10 +32,10 @@ public class Controller {
 				CheckedInput = CheckedInput.next;
 			}
 		}
-		if(Input.getKeyDown(p)){
+		if(Input.GetKeyDown(p)){
 			inputStack.AddLast(new inputHolder(B_punch));
 		}
-		if(Input.getKeyDown(k)){
+		if(Input.GetKeyDown(k)){
 			inputStack.AddLast(new inputHolder(B_KICK));
 		}
 		if(Input.GetAxis(horAxis)>0){
