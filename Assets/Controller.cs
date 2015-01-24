@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-
+/*
 public class Controller : MonoBehaviour
 {
 	enum Inputs {POS_A_HORIZONTAL, POS_A_VERTICAL,
@@ -68,4 +68,7 @@ public class Controller : MonoBehaviour
 			inputStack.AddLast(new inputHolder((int) Inputs.NULL_A_VERTICAL));
 
 	}
+  
 }
+
+*/
