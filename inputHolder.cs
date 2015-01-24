@@ -3,8 +3,12 @@ namespace AssemblyCSharp
 {
 		public class inputHolder
 		{
-				public inputHolder ()
+				public int input;
+				public float time;
+				public inputHolder (int inputInfo)
 				{
+					inputInfo = input;
+					time = Time.time;
 				}
 		}
 }
