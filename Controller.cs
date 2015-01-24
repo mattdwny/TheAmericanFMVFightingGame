@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class Controller {
-	enum Inputs {B_PUNCH, B_KICK,POS_A_HORIZONTAL, POS_A_VERTICAL,NEG_A_HORIZONTAL, NEG_A_VERTICAL};
+	enum Inputs {POS_A_HORIZONTAL, POS_A_VERTICAL,NEG_A_HORIZONTAL, NEG_A_VERTICAL};
+	public int pButtonSt,kButtonSt;
 	public LinkedList<inputHolder> inputStack;
 	public float decayTime;
 	public string p,k,h,v;
@@ -32,11 +33,20 @@ public class Controller {
 				CheckedInput = CheckedInput.next;
 			}
 		}
+		pButtonSt =0;
+		kButtonSt = 0;
 		if(Input.GetKeyPress(p)){
-			inputStack.AddLast(new inputHolder(B_punch));
+			pButtonSt = 1;
 		}
 		if(Input.GetKeyPress(k)){
-			inputStack.AddLast(new inputHolder(B_KICK));
+			kButtonSt = 1;
+		}
+		if(Input.GetKeyReleased(p)){
+			pButtonSt = -1;
+
+		}
+		if(Input.GetKeyReleased(k)){
+			kButtonSt = -1;
 		}
 		if(Input.GetAxis(horAxis)>0){
 			inputStack.AddLast(new inputHolder(POS_A_HORIZONTAL));
