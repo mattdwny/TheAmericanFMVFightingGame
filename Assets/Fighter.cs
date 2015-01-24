@@ -1,22 +1,20 @@
 using UnityEngine;
 using System.Collections;
 
-public class Fighter : MonoBehaviour {
-	BoxCollider2D hitbox;
+public class Fighter : MonoBehaviour 
+{
 	public GameObject enemy;
 	public enum FighterState {PUNCH, KICK, JUMP, BLOCK, AIRPUNCH, AIRKICK, NULL};
 	public FighterState state = FighterState.NULL;
 	public State[] states;
+	public Controller control;
 
-	public MovieTexture vid;
-
-	// Update is called once per frame
 	void Update () 
 	{
 		bool redo = false;
 
 		REDO:
-/*
+			/*
 		switch(state)
 		{
 			case FighterState.NULL:
@@ -62,7 +60,6 @@ public class Fighter : MonoBehaviour {
 			case FighterState.JUMP:
 
 				//Jump();
-			/*
 				transform.position.y += vy;
 				--vy;
 				if(transform.position.y <= floor && vy != 15)
@@ -88,10 +85,7 @@ public class Fighter : MonoBehaviour {
 				Debug.Log ("You Dun Fucked Up");
 				break;
 		}
-		*/
-
+	*/
 		if(redo) goto REDO;
 	}
 }
-
-
