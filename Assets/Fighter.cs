@@ -20,8 +20,10 @@ public class Fighter : MonoBehaviour
 		{
 			case FighterState.NULL:
 				LinkedListNode<inputHolder> LastMoveInput = control.inputStack.Last;
-			
-				if (LastMoveInput.Value.input == 1 && LastMoveInput.Value.time + x < Time.time)
+				if(player.hitstun_count>0){
+					this.state = FighterState.HITSTUN;
+					redo = true;
+				}else if (LastMoveInput.Value.input == 1 && LastMoveInput.Value.time + x < Time.time)
 				{
 					this.state = FighterState.JUMP;
 					redo = true;
@@ -31,7 +33,7 @@ public class Fighter : MonoBehaviour
 					this.state = FighterState.PUNCH;
 					redo = true;
 				}
-				else if (control.kButtonSt==1&& !player.isTouchingGround()) 
+				else if (control.kButtonSt == 1 && !player.isTouchingGround()) 
 				{
 					this.state = FighterState.KICK;
 					redo = true;
@@ -54,35 +56,64 @@ public class Fighter : MonoBehaviour
 				{
 					this.state = FighterState.BLOCK;
 					redo = true;
+				}else if (LastMoveInput.Value.input == 0 && LastMoveInput.Value.time + x < Time.time)
+				{
+					this.state = FighterState.RIGHT;
+					redo = true;
+				}else if (LastMoveInput.Value.input == 2 && LastMoveInput.Value.time + x < Time.time)
+				{
+					this.state = FighterState.LEFT;
+					redo = true;
+				}else if (LastMoveInput.Value.input == 3 && LastMoveInput.Value.time + x < Time.time)
+				{
+					this.state = FighterState.CROUCH;
+					redo = true;
+				}
+				break;
+			case FighterState.HITSTUN:
+				player.hitstun_count--;
+				if(player.hitstun_count<=0){
+					player.hitstun_count=0;
+					this.state = FighterState.NULL;
 				}
 				break;
 			case FighterState.PUNCH:
 				
-				Punch();
+				player.Punch(control.inputStack);
 				this.state = FighterState.NULL;
 				break;
 			case FighterState.KICK:
 				
-				Kick();
+				player.Kick(control.inputStack);
 				this.state = FighterState.NULL;
 				break;
 			case FighterState.JUMP:
-				Jump();
+				player.Jump();
 				this.state = FighterState.NULL;
 				break;
 			case FighterState.AIRPUNCH:
 				
-				AirPunch();
+				player.AirPunch(control.inputStack);
 				this.state = FighterState.NULL;
 				break;
 			case FighterState.AIRKICK:
 				
-				AirKick();
+				player.AirKick(control.inputStack);
 				this.state = FighterState.NULL;
 				break;
 			case FighterState.BLOCK:
 				
-				Block();
+				player.Block();
+				this.state = FighterState.NULL;
+				break;
+			case FighterState.LEFT:
+				
+				player.MOVELEFT();
+				this.state = FighterState.NULL;
+				break;
+			case FighterState.RIGHT:
+				
+				player.MOVERIGHT();
 				this.state = FighterState.NULL;
 				break;
 			default:

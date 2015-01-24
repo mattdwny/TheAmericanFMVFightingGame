@@ -17,8 +17,6 @@ public class MovementController : MonoBehaviour
 	public float velX;
 	public float velY;
 	private float grav = 40f;
-	private int gravCounter;
-	private int jumpCounter;
 	private const float MAX_JUMP_HEIGHT = 60;
 	private bool jumping;
 	// Use this for initialization
@@ -27,10 +25,8 @@ public class MovementController : MonoBehaviour
 		jumpsRemaining = MAX_JUMPS;
 		grounded = false;
 		transform.rigidbody2D.isKinematic = true;
-		velX = .5f;
-		velY = .3f;
-		gravCounter = 0;
-		jumpCounter = 0;
+		velX = 0f;
+		velY = 0f;
 		jumping = false;
 		current_x = transform.position.x;
 		current_y = transform.position.y;
@@ -40,87 +36,68 @@ public class MovementController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		grounded = isTouchingGround();
-		
-		if (!grounded) velY -= grav/2 * Time.deltaTime;
-		Move();
-		if (!grounded) velY -= grav/2 * Time.deltaTime;
-		
-		
-		
-		//...............................................................................
-		//test input
-		
-		if (Input.GetButtonDown("Jump"))
-			Jump();
-		if (Input.GetKey(KeyCode.A))
-			moveLeft();
-		if (Input.GetKey(KeyCode.D))
-			moveRight();
-		
-		if (jumping)
-			Move();
-		Move();
-		
-		
-		//test input
-		//...............................................................................
-		
+		BoundaryCheck();
 	}
 	
 	void Move()
-	{
-		transform.position += new Vector3(Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime, velY, 0f) * Time.deltaTime;
-	}
-	
-	void moveLeft()
-	{
-		transform.position = new Vector2(transform.position.x - velX, transform.position.y);
+	{	
+		if (!grounded) velY -= grav/2 * Time.deltaTime;
 		
-	}
-	void moveRight()
-	{
-		transform.position = new Vector2(transform.position.x + velX, transform.position.y);
-	}
-	void moveUp()
-	{
-		transform.position = new Vector2(transform.position.x, transform.position.y + velY);
-	}
-	void moveDown()
-	{
-		if(!isTouchingGround())
-			transform.position = new Vector2(transform.position.x, transform.position.y - velY);
+		if(grounded) 
+		{
+			transform.position += new Vector3(Input.GetAxisRaw("Horizontal") * moveSpeed, velY, 0f) * Time.deltaTime;
+		}
+		else
+		{
+			//Directional Influence
+		}
+		
+		if (!grounded) velY -= grav/2 * Time.deltaTime;
 	}
 	void Jump()
 	{
 		if (jumpsRemaining > 0)
 		{
 			if (grounded) grounded = false;
-			
 			jumping = true;
-			
 			
 			Debug.Log("in jump");
 			
 			jumpsRemaining--;
-			
-			//moveUp();
-			
+
 			velY = jumpSpeed;
-			
-			//grav *= -1;
 		}
 	}
 	
-	bool isTouchingGround()
-	{
+	void BoundaryCheck()
+	{	
+		if (transform.position.x < -10f && velX <= 0f)
+		{
+			transform.position = new Vector3( -10f, transform.position.y, 0f);
+		}
+		else if (transform.position.x > 10f && velX >= 0f)
+		{
+			transform.position = new Vector3(  10f, transform.position.y, 0f);
+		}
+		
 		if (transform.position.y <= 0 && velY < 0f)
 		{
 			velY = 0;
 			transform.position = new Vector3(transform.position.x, 0f, 0f);
 			jumpsRemaining = MAX_JUMPS;
-			return true;
+			grounded = true;
 		}
-		return false;
+	}
+	void Punch(LinkedList<inputHolder> inputs){
+	}
+	
+	void AirPunch(LinkedList<inputHolder> inputs){
+	}
+	
+	void Kick(LinkedList<inputHolder> inputs){
+	}
+	
+	void AirKick(LinkedList<inputHolder> inputs){
 	}
 }
+

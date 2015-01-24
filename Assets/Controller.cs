@@ -53,19 +53,20 @@ public class Controller : MonoBehaviour
 		if(Input.GetButtonUp(k)){
 			kButtonSt = -1;
 		}
-		if(Input.GetAxis(h)>0)
-			inputStack.AddLast(new inputHolder((int) Inputs.POS_A_HORIZONTAL));
-		else if(Input.GetAxis(h)<0) 
-			inputStack.AddLast(new inputHolder((int) Inputs.NEG_A_HORIZONTAL));
-		else if(Input.GetAxis(h)==0)
-			inputStack.AddLast(new inputHolder((int) Inputs.NULL_A_HORIZONTAL));
-
+		
 		if(Input.GetAxis(v)>0)
 			inputStack.AddLast(new inputHolder((int) Inputs.POS_A_VERTICAL));
 		else if(Input.GetAxis(v)<0)
 			inputStack.AddLast(new inputHolder((int) Inputs.NEG_A_VERTICAL));
 		else if(Input.GetAxis(v)==0)
 			inputStack.AddLast(new inputHolder((int) Inputs.NULL_A_VERTICAL));
+		
+		if(Input.GetAxis(h)>0)
+			inputStack.AddLast(new inputHolder((int) Inputs.POS_A_HORIZONTAL));
+		else if(Input.GetAxis(h)<0) 
+			inputStack.AddLast(new inputHolder((int) Inputs.NEG_A_HORIZONTAL));
+		else if(Input.GetAxis(h)==0)
+			inputStack.AddLast(new inputHolder((int) Inputs.NULL_A_HORIZONTAL));
 
 	}
 }
