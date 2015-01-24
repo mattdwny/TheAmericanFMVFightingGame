@@ -35,7 +35,7 @@ public class Controller : MonoBehaviour
 			}
 			else
 			{
-				CheckedInput = CheckedInput.Next;
+				break;
 			}
 		}
 		pButtonSt =0;

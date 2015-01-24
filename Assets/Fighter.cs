@@ -14,21 +14,23 @@ public class Fighter : MonoBehaviour
 		bool redo = false;
 
 		REDO:
-			/*
+			
 		switch(state)
 		{
 			case FighterState.NULL:
-				if (Buttons.jump + x < Time.time)
+				LinkedListNode<inputHolder> LastMoveInput = control.inputStack.Last;
+			
+				if (LastMoveInput.Value.input == 1 || LastMoveInput.Value.time + x < Time.time)
 				{
 					this.state = FighterState.JUMP;
 					redo = true;
 				}
-				else if (Buttons.punch + x < Time.time) 
+				else if (pButtonSt==1) 
 				{
 					this.state = FighterState.PUNCH;
 					redo = true;
 				}
-				else if (Buttons.kick + x < Time.time) 
+				else if (kButtonSt==1) 
 				{
 					this.state = FighterState.KICK;
 					redo = true;
@@ -60,14 +62,7 @@ public class Fighter : MonoBehaviour
 			case FighterState.JUMP:
 
 				//Jump();
-				transform.position.y += vy;
-				--vy;
-				if(transform.position.y <= floor && vy != 15)
-				{
-					transform.position.y = floor;
-					vy = 15;
-					state = FighterState.NULL;
-				}
+				
 				break;
 			case FighterState.AIRPUNCH:
 
@@ -85,7 +80,7 @@ public class Fighter : MonoBehaviour
 				Debug.Log ("You Dun Fucked Up");
 				break;
 		}
-	*/
+	
 		if(redo) goto REDO;
 	}
 }
