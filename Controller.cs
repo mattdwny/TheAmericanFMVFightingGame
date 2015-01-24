@@ -15,26 +15,40 @@ public class Controller {
 	
 	
 	// Update is called once per frame
-	void UpdateInput () {
+	void UpdateInput ()
+	{
 		LinkedListNode<inputHolder> CheckedInput = inputStack.first;
-		while(CheckedInput != null){
-			if(Time.time-CheckInput.Value.time> decayTime){
+		while(CheckedInput != null)
+		{
+			if(Time.time - CheckInput.Value.time > decayTime)
+			{
 				inputHolder Temp = CheckedInput;
 				CheckedInput = CheckedInput.next;
 				inputStack.remove(Temp);
 				
-			}else{
+			}
+			else
+			{
 				CheckedInput = CheckedInput.next;
 			}
 		}
-		if(input.getKeyDown(p)){
-			inputStack.AddLast(new inputHoled(B_punch));
-		}if(input.getKeyDown(k)){
-			inputStack.AddLast(new inputHoled(b_Kick));
-		}if(input.getKeyDown(p)){
-			inputStack.AddLast(new inputHoled(B_punch));
-		}if(input.getKeyDown(p)){
-			inputStack.AddLast(new inputHoled(B_punch));
+		if(Input.getKeyDown(p)){
+			inputStack.AddLast(new inputHolder(B_punch));
+		}
+		if(Input.getKeyDown(k)){
+			inputStack.AddLast(new inputHolder(B_KICK));
+		}
+		if(Input.GetAxis(horAxis)>0){
+			inputStack.AddLast(new inputHolder(POS_A_HORIZONTAL));
+		}
+		if(Input.GetAxis(horAxis)<0){
+			inputStack.AddLast(new inputHolder(NEG_A_HORIZONTAL));
+		}
+		if(Input.GetAxis(verAxis)>0){
+			inputStack.AddLast(new inputHolder(POS_A_VERTICAL));
+		}
+		if(Input.GetAxis(verAxis)<0){
+			inputStack.AddLast(new inputHolder(NEG_A_VERTICAL));
 		}
 	}
 }
