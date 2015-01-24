@@ -9,8 +9,9 @@ public class Controller : MonoBehaviour
 	public int pButtonSt,kButtonSt;
 	public LinkedList<inputHolder> inputStack;
 	public float decayTime;
-	public string p,k,h,v;
-	public Controller(string punchButton,string kickButton,string horAxis,string verAxis)
+	public KeyCode p,k;
+	public String h,v;
+	public Controller(KeyCode punchButton,KeyCode kickButton,string horAxis,string verAxis)
 	{
 		p=punchButton;
 		k=kickButton;
