@@ -58,28 +58,32 @@ public class Fighter : MonoBehaviour
 				break;
 			case FighterState.PUNCH:
 				
-				//Punch();
+				Punch();
+				this.state = FighterState.NULL;
 				break;
 			case FighterState.KICK:
 				
-				//Kick();
+				Kick();
+				this.state = FighterState.NULL;
 				break;
 			case FighterState.JUMP:
-				
-				//Jump();
-				
+				Jump();
+				this.state = FighterState.NULL;
 				break;
 			case FighterState.AIRPUNCH:
 				
-				//AirPunch();
+				AirPunch();
+				this.state = FighterState.NULL;
 				break;
 			case FighterState.AIRKICK:
 				
-				//AirKick();
+				AirKick();
+				this.state = FighterState.NULL;
 				break;
 			case FighterState.BLOCK:
 				
-				//Block();
+				Block();
+				this.state = FighterState.NULL;
 				break;
 			default:
 				Debug.Log ("You Dun Fucked Up");
