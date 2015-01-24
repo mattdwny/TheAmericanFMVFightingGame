@@ -1,5 +1,7 @@
 using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
+
+[System.Serializable]
 
 public class Fighter : MonoBehaviour 
 {
@@ -14,7 +16,6 @@ public class Fighter : MonoBehaviour
 		bool redo = false;
 
 		REDO:
-			
 		switch(state)
 		{
 			case FighterState.NULL:
@@ -25,12 +26,12 @@ public class Fighter : MonoBehaviour
 					this.state = FighterState.JUMP;
 					redo = true;
 				}
-				else if (pButtonSt==1) 
+				else if (control.pButtonSt==1) 
 				{
 					this.state = FighterState.PUNCH;
 					redo = true;
 				}
-				else if (kButtonSt==1) 
+				else if (control.kButtonSt==1) 
 				{
 					this.state = FighterState.KICK;
 					redo = true;
@@ -56,31 +57,30 @@ public class Fighter : MonoBehaviour
 				//Punch();
 				break;
 			case FighterState.KICK:
-
+				
 				//Kick();
 				break;
 			case FighterState.JUMP:
-
+				
 				//Jump();
 				
 				break;
 			case FighterState.AIRPUNCH:
-
+				
 				//AirPunch();
 				break;
 			case FighterState.AIRKICK:
-
+				
 				//AirKick();
 				break;
 			case FighterState.BLOCK:
-
+				
 				//Block();
 				break;
 			default:
 				Debug.Log ("You Dun Fucked Up");
 				break;
 		}
-	
 		if(redo) goto REDO;
 	}
 }
