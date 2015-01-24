@@ -5,7 +5,7 @@ public class Combat : MonoBehaviour
 {	
 	public MovementController player;
 	public MovementController enemy;
-	HitBox hit;
+	public HitBox hit;
 	public int hitstun;
 
 	void OnCollisionEnter2D(Collision c)
@@ -18,13 +18,5 @@ public class Combat : MonoBehaviour
 			enemy.hitstun_count += hitstun;
 			Destroy(this.gameObject);
 		}
-	}
-	void SpecialMove()
-	{
-
-	}
-	void HyperCombo()
-	{
-
 	}
 }
