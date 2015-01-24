@@ -4,8 +4,8 @@ using System.Collections;
 public class MovementController : MonoBehaviour
 {
 	public float health = 100;
-	public float current_x = transform.position.x;
-	public float current_y = transform.position.y;
+	public float current_x;
+	public float current_y;
 	public int facing = 1;
 	public float moveSpeed = 6f;
 	public float jumpSpeed = 20f;
@@ -30,6 +30,8 @@ public class MovementController : MonoBehaviour
 		gravCounter = 0;
 		jumpCounter = 0;
 		jumping = false;
+		current_x = transform.position.x;
+		current_y = transform.position.y;
 	}
 	
 	// Update is called once per frame
