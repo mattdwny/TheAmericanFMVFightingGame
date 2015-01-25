@@ -40,10 +40,10 @@ public class Controller : MonoBehaviour
 		}
 		pButtonSt = 0;
 		kButtonSt = 0;
-		if(Input.GetButtonDown(p)){
+		if(Input.GetKeyDown(p)){
 			pButtonSt = 1;
 		}
-		if(Input.GetButtonDown(k)){
+		if(Input.GetKeyDown(k)){
 			kButtonSt = 1;
 		}
 		if(Input.GetButtonUp(p)){
