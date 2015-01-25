@@ -72,10 +72,19 @@ public class Fighter : MonoBehaviour
 				break;
 			case FighterState.HITSTUN:
 				player.hitstun_count--;
+				if(player.knockdown == true){
+					this.state = FighterState.KNOCKDOWN;
+				}
 				if(player.hitstun_count<=0){
 					player.hitstun_count=0;
 					this.state = FighterState.NULL;
 				}
+				
+				break;
+			case FighterState.KNOCKDOWN:
+				player.hitstun_count--;
+				//enter knockdown handling here
+				
 				break;
 			case FighterState.PUNCH:
 				

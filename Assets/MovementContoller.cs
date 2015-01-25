@@ -9,6 +9,7 @@ public class MovementController : MonoBehaviour
 	public int facing = 1;
 	public float moveSpeed = 6f;
 	public float jumpSpeed = 20f;
+	public bool knockdown = false;
 	private bool grounded = false;
 	private const int MAX_JUMPS = 2;
 	public int hitstun_count;
@@ -85,6 +86,9 @@ public class MovementController : MonoBehaviour
 			velY = 0;
 			transform.position = new Vector3(transform.position.x, 0f, 0f);
 			jumpsRemaining = MAX_JUMPS;
+			if(grounded == false && hitstun_count > 0){
+				knockdown = true;
+			}
 			grounded = true;
 		}
 	}
