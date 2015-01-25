@@ -38,7 +38,7 @@ public class Controller : MonoBehaviour
 				break;
 			}
 		}
-		pButtonSt =0;
+		pButtonSt = 0;
 		kButtonSt = 0;
 		if(Input.GetButtonDown(p)){
 			pButtonSt = 1;
@@ -54,18 +54,18 @@ public class Controller : MonoBehaviour
 			kButtonSt = -1;
 		}
 		
-		if(Input.GetAxis(v)>0)
+		if(Input.GetAxis(v)>0 && inputStack.Last.Value.input != (int) Inputs.POS_A_VERTICAL)
 			inputStack.AddLast(new inputHolder((int) Inputs.POS_A_VERTICAL));
-		else if(Input.GetAxis(v)<0)
+		else if(Input.GetAxis(v)<0 && inputStack.Last.Value.input != (int) Inputs.NEG_A_VERTICAL)
 			inputStack.AddLast(new inputHolder((int) Inputs.NEG_A_VERTICAL));
-		else if(Input.GetAxis(v)==0)
+		else if(Input.GetAxis(v)==0 && inputStack.Last.Value.input != (int) Inputs.NULL_A_VERTICAL)
 			inputStack.AddLast(new inputHolder((int) Inputs.NULL_A_VERTICAL));
 		
-		if(Input.GetAxis(h)>0)
+		if(Input.GetAxis(h)>0 && inputStack.Last.Value.input != (int) Inputs.POS_A_HORIZONTAL)
 			inputStack.AddLast(new inputHolder((int) Inputs.POS_A_HORIZONTAL));
-		else if(Input.GetAxis(h)<0) 
+		else if(Input.GetAxis(h)<0 && inputStack.Last.Value.input != (int) Inputs.NEG_A_HORIZONTAL) 
 			inputStack.AddLast(new inputHolder((int) Inputs.NEG_A_HORIZONTAL));
-		else if(Input.GetAxis(h)==0)
+		else if(Input.GetAxis(h)==0 && inputStack.Last.Value.input != (int) Inputs.NULL_A_HORIZONTAL)
 			inputStack.AddLast(new inputHolder((int) Inputs.NULL_A_HORIZONTAL));
 
 	}

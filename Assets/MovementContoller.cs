@@ -88,24 +88,73 @@ public class MovementController : MonoBehaviour
 			grounded = true;
 		}
 	}
-	void Punch(int curstate,LinkedList<inputHolder> inputs, int dir,int super){
+	int Attack(int type, int curstate,LinkedList<inputHolder> inputs, int dir,int super){
 		LinkedListNode<inputHolder> Inputs = control.inputStack.Last;
-		switch(Inputs.value.input){
-			
+		//DRAGON LEFT
+		if(Inputs.Value.input == (int) Inputs.NEG_A_HORIZONTAL)
+		{
+			if(Inputs.Previous.Value.input == (int) Inputs.NULL_A_HORIZONTAL)
+			{
+				if(Inputs.Previous.Previous.Value.input == (int) Inputs.NEG_A_VERTICAL)
+				{
+					if(Inputs.Previous.Previous.Previous.Value.input == (int) Inputs.NEG_A_HORIZONTAL)
+					{
+						//depending on facing, the Dragon
+						return;
+					}
+				}
+			}
 		}
-	
-	}
-	
-	void AirPunch(int curstate,LinkedList<inputHolder> inputs, int dir, int super){
+		//DRAGON RIGHT
+		if(Inputs.Value.input == (int) Inputs.POS_A_HORIZONTAL)
+		{
+			if(Inputs.Previous.Value.input == (int) Inputs.NULL_A_HORIZONTAL)
+			{
+				if(Inputs.Previous.Previous.Value.input == (int) Inputs.NEG_A_VERTICAL)
+				{
+					if(Inputs.Previous.Previous.Previous.Value.input == (int) Inputs.POS_A_HORIZONTAL)
+					{
+						//depending on facing, the Dragon
+						return;
+					}
+				}
+			}
+		}
+		//QC LEFT
+		if(Inputs.Value.input == (int) Inputs.NEG_A_HORIZONTAL)
+		{
+			if(Inputs.Previous.Value.input == (int) Inputs.NEG_A_VERTICAL)
+			{
+				if(Inputs.Previous.Previous.Previous.Value.input == (int) Inputs.NULL_A_HORIZONTAL)
+				{
+					//depending on facing, QC
+					return;
+				}
+			}
+		}
+		//QC RIGHT
+		if(Inputs.Value.input == (int) Inputs.POS_A_HORIZONTAL)
+		{
+			if(Inputs.Previous.Value.input == (int) Inputs.NEG_A_VERTICAL)
+			{
+				if(Inputs.Previous.Previous.Previous.Value.input == (int) Inputs.NULL_A_HORIZONTAL)
+				{
+					//depending on facing, QC
+					return;
+				}
+			}
+		}
+		if(curstate ==1){
+			//punch
+			return
+		}
 		
+		//Left--Release Left--Down--Left
+		//Down--Left
+		//Mirrors
+	
 	}
 	
-	void Kick(int curstate,LinkedList<inputHolder> inputs, int dir){
-		
-	}
 	
-	void AirKick(int curstate,LinkedList<inputHolder> inputs, int dir){
-		
-	}
 }
 

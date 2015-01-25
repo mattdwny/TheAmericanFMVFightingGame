@@ -79,12 +79,12 @@ public class Fighter : MonoBehaviour
 				break;
 			case FighterState.PUNCH:
 				
-				player.Punch(control.pButtonSt,control.inputStack,player.facing,control.kButtonSt);
+				player.Attack(0,control.pButtonSt,control.inputStack,player.facing,control.kButtonSt);
 				this.state = FighterState.NULL;
 				break;
 			case FighterState.KICK:
 				
-				player.Kick(control.kButtonSt,control.inputStack,player.facing);
+				player.Attack(1,control.kButtonSt,control.inputStack,player.facing);
 				this.state = FighterState.NULL;
 				break;
 			case FighterState.JUMP:
@@ -93,12 +93,12 @@ public class Fighter : MonoBehaviour
 				break;
 			case FighterState.AIRPUNCH:
 				
-				player.AirPunch(control.pButtonSt,control.inputStack,player.facing,control.kButtonSt);
+				player.Attack(2,control.pButtonSt,control.inputStack,player.facing,control.kButtonSt);
 				this.state = FighterState.NULL;
 				break;
 			case FighterState.AIRKICK:
 				
-				player.AirKick(control.kButtonSt,control.inputStack,player.facing);
+				player.Attack(3,control.kButtonSt,control.inputStack,player.facing);
 				this.state = FighterState.NULL;
 				break;
 			case FighterState.BLOCK:
