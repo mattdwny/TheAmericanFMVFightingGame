@@ -13,6 +13,7 @@ public class MovementController : MonoBehaviour
 	private bool grounded = false;
 	private const int MAX_JUMPS = 2;
 	public int hitstun_count;
+	public int knockdown_count;
 
 	private int jumpsRemaining;
 	public float velX;
